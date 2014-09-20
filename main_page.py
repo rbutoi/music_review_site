@@ -1,6 +1,7 @@
 import webapp2
 import cgi
+from base_handler import *
 
-class MainPage(webapp2.RequestHandler):
+class MainPage(BaseHandler):
     def get(self):
-	self.response.write('<html><body>Welcome to music_review_site. <a href="/communities">Go to communities</a></body></html>')
+        self.render_response('main_page.html')

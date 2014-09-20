@@ -1,8 +1,9 @@
 import webapp2
 import cgi
 from google.appengine.api import users
+from base_handler import *
 
-class CommunityPage(webapp2.RequestHandler):
+class CommunityPage(BaseHandler):
     def get(self):
 	user = users.get_current_user()
 
