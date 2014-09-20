@@ -1,5 +1,5 @@
-import webapp2
+from base_handler import *
 
-class CreateCommunityPage(webapp2.RequestHandler):
+class CreateCommunityPage(BaseHandler):
     def get(self):
-	self.response.write('<html>Create page</html>')
+        self.render_response('main_page.html')

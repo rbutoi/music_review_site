@@ -1,5 +1,8 @@
-<html>
-  <body>
-    Welcome to music_review_site. <a href="/communities">Go to communities</a>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block title %}
+  Music Review Site
+{% endblock %}
+{% block content %}
+  Welcome to Music Review Site. <br /><br />
+  <a href="/communities">Go to communities (log in with Google)</a>
+{% endblock %}
