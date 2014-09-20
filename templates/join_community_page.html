@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+  Join a community
+{% endblock %}
+{% block content %}
+  <form action="/join" method="post">
+    Name: <input type="text" name="name">
+    Passcode: <input type="text" name="passcode">
+    <input type="submit" value="Join community">
+  </form>
+{% endblock %}
