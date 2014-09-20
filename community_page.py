@@ -2,10 +2,6 @@ import webapp2
 import cgi
 from google.appengine.api import users
 
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-	self.response.write('<html><body>Welcome to music_review_site. <a href="/communities">Go to communities</a></body></html>')
-
 class CommunityPage(webapp2.RequestHandler):
     def get(self):
 	user = users.get_current_user()
@@ -21,7 +17,3 @@ class CommunityPage(webapp2.RequestHandler):
 	
 	else:
 		self.redirect(users.create_login_url(self.request.uri))
-
-application = webapp2.WSGIApplication([
-    ('/', MainPage),('/communities',CommunityPage)
-], debug=True)
