@@ -1,9 +1,8 @@
-import os
 from base_handler import *
 from google.appengine.api import users
 import MySQLdb
 
-class SingleCommunityPage(BaseHandler):
+class AddAlbum(BaseHandler):
     def get(self, community):
         user = users.get_current_user()
 	if user:
@@ -14,12 +13,6 @@ class SingleCommunityPage(BaseHandler):
                 db = MySQLdb.connect(host='localhost', user='root', passwd="htndjango",db="musicsite")
 
             cursor = db.cursor()
-	    cursor.execute('SELECT * FROM users WHERE email = "%s" AND invite_accepted=1 AND community_id=%s'%(email,community))
-	    if (cursor.rowcount == 0):
-		self.redirect('/communities')
-	    else:
-		#show the page
-		self.response.write("<a href='/manage/%s'><button>Manage this community</button></a>"%community)
-		self.response.write("<a href='/addalbum/%s'><button>Add new album</button></a>"%community)
+            self.response.write("Page in Progress")
 	else:
 	    self.redirect('/communities')
