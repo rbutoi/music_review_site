@@ -5,6 +5,6 @@
 {% block content %}
 {{ message }}
 {% for invite in invites %}
-<br /><div>{{invite}}<form action="" method="post"><input type="hidden" name="community" value="{{invite}}"><input type="submit" value="Join"></form></div>
+<br /><div><form action="" method="post">{{invite}} <input type="hidden" name="community" value="{{invite}}"><input type="submit" value="Join"></form></div>
 {% endfor %}
 {% endblock %}
