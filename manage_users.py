@@ -13,7 +13,8 @@ class ManageUsers(BaseHandler):
 	    db = MySQLdb.connect(unix_socket='/cloudsql/hack-the-north-1:its-not-django', db='musicsite', user='root')
 	else:
 	    db = MySQLdb.connect(host='localhost', user='root', passwd="htndjango",db="musicsite")
-
+	self.response.write('<a href="/communities"><button>Return to Community list</button></a><br>')
+	self.response.write('<a href="/communities/%s"><button>Go to Community</button></a><br>'%id)
 	self.response.write('<form action="" method="post"><input type="hidden" name="leaveboolean" value="1"><input type="submit" value="Leave community"></form>')
 	
 	cursor = db.cursor()
@@ -48,11 +49,13 @@ class ManageUsers(BaseHandler):
 		leavestatus = cgi.escape(self.request.get('leaveboolean'))
 		community_id = cgi.escape(self.request.get('id'))
 		if (leavestatus == "1"):
-			self.response.write("You have left this community.<br><a href='/communities'>Return to Communities</a>")
+			self.response.write("You have left this community.<br><a href='/communities'><button>Return to Communities</button></a>")
 			cursor = db.cursor()
 			cursor.execute('UPDATE users SET invite_hidden=1, invite_accepted=0 WHERE community_id = %s AND email = "%s"' % (id,email))
 			db.commit()
 		else:
+			self.response.write('<a href="/communities"><button>Return to Community list</button></a><br>')
+			self.response.write('<a href="/communities/%s"><button>Go to Community</button></a><br>'%id)
 			self.response.write('<form action="" method="post"><input type="hidden" name="leaveboolean" value="1"><input type="submit" value="Leave community"></form>')
 			email = cgi.escape(self.request.get('email'))
 			self.response.write('%s has been invited!<br><br>' % email)
