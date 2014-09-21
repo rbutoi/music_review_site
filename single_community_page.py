@@ -20,6 +20,7 @@ class SingleCommunityPage(BaseHandler):
 	    else:
 		#show the page
 		self.response.write("<a href='/manage/%s'><button>Manage this community</button></a>"%community)
-		self.response.write("<a href='/addalbum/%s'><button>Add new album</button></a>"%community)
+		self.response.write("<a href='/addalbum/%s'><button>Add new album</button></a><hr>"%community)
+
 	else:
 	    self.redirect('/communities')
