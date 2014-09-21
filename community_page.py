@@ -1,8 +1,6 @@
 from google.appengine.api import users
 from base_handler import *
 import MySQLdb
-import connectgae
-from connectgae import DBConnection
 
 class CommunityPage(BaseHandler):
     def get(self):

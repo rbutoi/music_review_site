@@ -3,8 +3,6 @@ import cgi
 import MySQLdb
 from google.appengine.api import users
 import os
-import connectgae
-from connectgae import DBConnection
 
 class JoinCommunityPage(BaseHandler):
     def get(self):
