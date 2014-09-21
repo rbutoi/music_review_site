@@ -8,6 +8,6 @@ class CommunityPage(BaseHandler):
 	if user:
             # MAIN_STRING = ('Welcome, %s! (<a href="%s">Click here to logout</a>)' %
             # 	(user.nickname(), users.create_logout_url('/')))
-            self.render_response('community_page.html')
+            self.render_response('community_page.html', **{'logout_url': users.create_logout_url('/')})
 	else:
             self.redirect(users.create_login_url(self.request.uri))
