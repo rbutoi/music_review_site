@@ -1,6 +1,8 @@
 from google.appengine.api import users
 from base_handler import *
 import MySQLdb
+import connectgae
+from connectgae import DBConnection
 
 class CommunityPage(BaseHandler):
     def get(self):
@@ -9,7 +11,8 @@ class CommunityPage(BaseHandler):
 	if user:
 	    email = user.email()
 	    if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
-		db = MySQLdb.connect(unix_socket='/cloudsql/your-project-id:your-instance-name', user='root')
+		db = MySQLdb.connect(unix_socket='/cloudsql/hack-the-north-1:its-not-django', db='musicsite', user='root')
+
 	    else:
 		db = MySQLdb.connect(host='localhost', user='root', passwd="htndjango",db="musicsite")
 	
