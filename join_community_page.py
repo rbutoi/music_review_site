@@ -15,7 +15,7 @@ class JoinCommunityPage(BaseHandler):
 		db = MySQLdb.connect(host='localhost', user='root', passwd="htndjango",db="musicsite")
 
 	cursor = db.cursor()
-	result = cursor.execute('SELECT community_name FROM users WHERE email = "%s" AND invite_accepted = 0;' % email)
+	result = cursor.execute('SELECT community_name,community_id FROM users WHERE email = "%s" AND invite_accepted = 0 AND invite_hidden=0;' % email)
 	count = cursor.rowcount
 
 	if (count == 0):
@@ -23,10 +23,10 @@ class JoinCommunityPage(BaseHandler):
 			"message": "You have no pending invites!"
 		}
 	else:
+		#known bug where if you have two pending invites of the same name, accepting will cause you to accept both
 		pendinglist = []
 		for row in cursor:
 			pendinglist.append(row[0])
-		invitelist = ""
 		template_messages={
 			"message": "You have %s pending invite(s)!" % count,
 			"invites": pendinglist
@@ -49,7 +49,7 @@ class JoinCommunityPage(BaseHandler):
 	result = cursor.execute('UPDATE users SET invite_accepted=1 WHERE email="%s" AND community_name="%s";' % (email,community))
 	db.commit()
 
-	result = cursor.execute('SELECT community_name FROM users WHERE email = "%s" AND invite_accepted = 0;' % email)
+	result = cursor.execute('SELECT community_name,community_id FROM users WHERE email = "%s" AND invite_accepted = 0 AND invite_hidden=0;' % email)
 	count = cursor.rowcount
 	if (count == 0):
 		template_messages={
