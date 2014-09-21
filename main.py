@@ -4,7 +4,6 @@ from community_page import *
 from create_community_page import *
 from join_community_page import *
 from single_community_page import *
-from testup import *
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -13,5 +12,5 @@ application = webapp2.WSGIApplication([
     ('/join/?', JoinCommunityPage),
     ('/communities/(.+)', SingleCommunityPage),
     # debug
-    ('/up/?', TestUp)
+    # ('/up/?', TestUp)
 ], debug=True)
