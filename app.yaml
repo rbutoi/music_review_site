@@ -15,5 +15,8 @@ libraries:
   version: latest
 
 handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+
 - url: /.*
   script: main.application

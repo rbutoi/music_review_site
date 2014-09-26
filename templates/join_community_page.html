@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-  Join a community
+  View invites
 {% endblock %}
 {% block content %}
-  <form action="/join" method="post">
-    Name: <input type="text" name="name">
-    Passcode: <input type="text" name="passcode">
-    <input type="submit" value="Join community">
-  </form>
+{{ message }}
+{% for invite in invites %}
+<br /><div><form action="" method="post">{{invite}} <input type="hidden" name="community" value="{{invite}}"><input type="submit" value="Join"></form></div>
+{% endfor %}
 {% endblock %}
