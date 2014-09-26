@@ -19,10 +19,19 @@ class SingleCommunityPage(BaseHandler):
 	    if (cursor.rowcount == 0):
 		self.redirect('/communities')
 	    else:
-		#show the page
-		self.response.write("<a href='/manage/%s'><button>Manage this community</button></a>"%community)
-		self.response.write("<a href='/addalbum/%s'><button>Add new album</button></a><hr>"%community)
+		cursor.execute('SELECT name FROM communities WHERE id = %s'%community)
+		community_name = ""
+		for row in cursor:
+		    community_name = row[0]
 
+		html_string=""
+		
+		template_messages={
+			"community_id":community,
+			"community_name":community_name,
+			"message":html_string
+		}
+		self.render_response('view_all_albums.html', **template_messages)
 	else:
 	    self.redirect('/communities')
 
@@ -49,9 +58,17 @@ class SingleCommunityPage(BaseHandler):
 		
 		cursor.execute('INSERT INTO albums (album_name,album_year,album_genre,album_artist,posted_by,addition_date,community_id) VALUES ("%s",%s,"%s","%s","%s",NOW(),%s);' % (album_name,album_year,album_genre,album_artist,posted_by,community))
 		db.commit()
+		cursor.execute('SELECT name FROM communities WHERE id = %s'%community)
+		community_name = ""
+		for row in cursor:
+		    community_name = row[0]
 		
-		#show the page
-		self.response.write("<a href='/manage/%s'><button>Manage this community</button></a>"%community)
-		self.response.write("<a href='/addalbum/%s'><button>Add new album</button></a><hr>"%community)
+		html_string = ""
+		template_messages={
+			"community_id":community,
+			"community_name":community_name,
+			"message":html_string
+		}
+		self.render_response('view_all_albums.html', **template_messages)
 	else:
 	    self.redirect('/communities')
