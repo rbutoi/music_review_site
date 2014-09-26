@@ -23,6 +23,7 @@ class ViewAlbum(BaseHandler):
 		if (cursor.rowcount == 0):
 		    self.redirect('/communities')
 		else:
+		    
 
 	else:
 	    self.redirect('/communities')
