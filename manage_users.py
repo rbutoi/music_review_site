@@ -3,7 +3,6 @@ import cgi
 import MySQLdb
 from google.appengine.api import users
 import os
-import time
 
 class ManageUsers(BaseHandler):
     def get(self,id):
