@@ -1,19 +1,15 @@
-@font-face {
-	font-family: fontMine;
-	src: url("Arsenal-Regular.otf");
-}
-
 div.album {
 	display: inline-block;
-	
-	margin-left: 60px;
-	margin-right: 60px;
+	vertical-align: middle;
+	margin-left: 40px;
+	margin-right: 40px;
 	padding: 0px;
 	border: 0px;
 //	display: inline;
-	width:125px;
-	max-width:125px;
+	width:160px;
+	max-width:160px;
 	text-align: center;
+	vertical-align: middle;
 	style.wordWrap: "break-word";
 }
 
@@ -22,47 +18,59 @@ div.album img {
 	margin: 0px;
 	padding: 0px;
 	border: 1px solid #000000;
-	width: 120px;
-	height: 120px;	
+	width: 160px;
+	height: 160px;
 	target: _self;
 	
 }
 
 div.album a:hover img {
 	border: 1px solid #000000;
+	
 }
 
 h1 {
 	text-align: center;
-	font-family: fontMine;
+	font-family: "Montserrat";
 	font-size: 250%;
+//	height: 120px;
 
 }
 
 p {
+	margin-top: 5px;
 	display: inline-block;
 	opacity:0;
-	float: left;
+//	float: left;
 	width: 100%;
-	font-family: fontMine;
+	font-family: "Raleway";
 //	font-size: 75%;
-	height: 90px;
-	max-height: 90px;
+	height: 50px;
+	max-height: 50px;
 }
 
 
 
 div.box {
-	display: block;
-	padding: 5px;
-	margin: 5px;
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
 	border: 0px solid #000000;
 	text-align: center;
-	overflow: auto;
-	height: 80%;
-	max-height: 80% 
+	overflow: auto
+	width: 1920;
+	max-width: 1920 
 //	width-offset:-205;
 }
 
+div.navbar {
+//	float:center;
+	text-align: center;
+//	display: inline;
+	padding: 0 auto;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border: 0px;
+}
 
 
