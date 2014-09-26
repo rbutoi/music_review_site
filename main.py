@@ -6,6 +6,7 @@ from join_community_page import *
 from single_community_page import *
 from manage_users import *
 from add_album import *
+from album_view import *
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -14,7 +15,8 @@ application = webapp2.WSGIApplication([
     ('/join/?', JoinCommunityPage),
     ('/communities/(.+)', SingleCommunityPage),
     ('/manage/(.+)', ManageUsers),
-    ('/addalbum/(.+)', AddAlbum)
+    ('/addalbum/(.+)', AddAlbum),
+    ('/albums/(.+)', ViewAlbum)
     # debug
     # ('/up/?', TestUp)
 ], debug=True)
