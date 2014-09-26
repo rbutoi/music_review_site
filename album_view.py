@@ -15,7 +15,7 @@ class ViewAlbum(BaseHandler):
 		else:
 		    db = MySQLdb.connect(host='localhost', user='root', passwd="htndjango",db="musicsite")
 		cursor = db.cursor()
-		cursor.execute('SELECT community_id FROM albums WHERE album_id = %s' % album_id)
+		cursor.execute('SELECT community_id FROM albums WHERE id = %s' % album_id)
 		for rows in cursor:
 		    community_id = rows[0]
 
@@ -23,7 +23,7 @@ class ViewAlbum(BaseHandler):
 		if (cursor.rowcount == 0):
 		    self.redirect('/communities')
 		else:
-		    
+		    self.response.write('Page coming soon')
 
 	else:
 	    self.redirect('/communities')
@@ -38,7 +38,7 @@ class ViewAlbum(BaseHandler):
 		else:
 		    db = MySQLdb.connect(host='localhost', user='root', passwd="htndjango",db="musicsite")
 		cursor = db.cursor()
-		cursor.execute('SELECT community_id FROM albums WHERE album_id = %s' % album_id)
+		cursor.execute('SELECT community_id FROM albums WHERE id = %s' % album_id)
 		for rows in cursor:
 		    community_id = rows[0]
 
