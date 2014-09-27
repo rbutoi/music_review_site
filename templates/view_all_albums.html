@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %}
-  Community - {{community_name}}
-{% endblock %}
-{% block content %}
-<a href='/manage/{{community_id}}'><button>Manage this community</button></a>
-<a href='/addalbum/{{community_id}}'><button>Add new album</button></a><hr>
-{{ message }}
-{% endblock %}

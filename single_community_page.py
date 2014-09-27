@@ -31,7 +31,7 @@ class SingleCommunityPage(BaseHandler):
 			"community_name":community_name,
 			"message":html_string
 		}
-		self.render_response('view_all_albums.html', **template_messages)
+		self.render_response('community_albums.html', **template_messages)
 	else:
 	    self.redirect('/communities')
 
@@ -69,6 +69,6 @@ class SingleCommunityPage(BaseHandler):
 			"community_name":community_name,
 			"message":html_string
 		}
-		self.render_response('view_all_albums.html', **template_messages)
+		self.render_response('community_albums.html', **template_messages)
 	else:
 	    self.redirect('/communities')
