@@ -24,14 +24,27 @@ class SingleCommunityPage(BaseHandler):
 		for row in cursor:
 		    community_name = row[0]
 
-		html_string=""
-		
+		html_string=""		    
+	        cursor.execute('SELECT id, album_name, album_artist FROM albums WHERE community_id = %s' % community)
+	        for row in cursor:
+	            album_name = row[1]
+	            album_artist = row[2]
+	            album_id = row[0]
+	            album_string = """<div class="album">
+                                          <a href="/albums/%s">
+                                            <img class="album_art" src="http://placekitten.com/g/250/250" alt="%s">
+                                          </a>
+                                          <p><b>%s</b><br />%s</p>
+                                        </div>""" % (album_id, album_name, album_name, album_artist)
+	            html_string = html_string + album_string
+	            
 		template_messages={
 			"community_id":community,
-			"community_name":community_name,
-			"message":html_string
+			"community_name":community_name
 		}
 		self.render_response('community_albums.html', **template_messages)
+	        self.response.write(html_string)
+	        self.response.write('</div></div></body></html>')
 	else:
 	    self.redirect('/communities')
 
