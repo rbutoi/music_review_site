@@ -79,7 +79,16 @@ class ViewAlbum(BaseHandler):
 		    self.redirect('/communities')
 		else:
 		    self.response.write('Post request processed')
+		    get_comment_text = cgi.escape(self.request.get('post_comment_text'))
+		    get_comment_rating = cgi.escape(self.request.get('post_comment_rating'))
 		    
-
+		    cursor.execute('SELECT * FROM comments WHERE parent_album_id = %s AND posted_by = "%s"' % (album_id,email)
+		    if (cursor.rowcount == 0):
+                        #this is a new comment
+                        cursor.execute('INSERT INTO comments (posted_by, parent_album_id, comment, last_edit, rating) VALUES ("%s",%s,"%s",NOW(),%s)'%(email,album_id,get_comment_text,get_comment_rating))
+                        db.commit()
+                    else:
+                        #this is an edit to an existing comment
+                        
 	else:
 	    self.redirect('/communities')
