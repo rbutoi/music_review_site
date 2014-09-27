@@ -7,7 +7,6 @@ class AddAlbum(BaseHandler):
         user = users.get_current_user()
 	if user:
 	    email = user.email()
-	    nickname = user.nickname()
             if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
                 db = MySQLdb.connect(unix_socket='/cloudsql/hack-the-north-1:its-not-django',db='musicsite', user='root')
             else:
@@ -23,7 +22,7 @@ class AddAlbum(BaseHandler):
 		Album Name: <input type="text" name="album_name"><br />Album Year: <input type="text" name="album_year"><br />
 		Album Artist: <input type="text" name="album_artist"><br />Album Genre: <input type="text" name="album_genre"><br />
 		<input type="hidden" name="posted_by" value="%s"><input type="submit" value="Add Album">
-		</form></body></html>''' % (community,nickname)
+		</form></body></html>''' % (community,email)
 
 		self.response.write(FORM_HTML)
 	else:

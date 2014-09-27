@@ -36,10 +36,27 @@ class ViewAlbum(BaseHandler):
 		        "album_artist":album_artist,
 		        "album_genre":album_genre,
 		        "album_year":album_year,
-		        "album_posted_by":album_posted_by
+		        "album_posted_by":album_posted_by,
+		        "album_id":album_id,
+		        "community_id":community_id,
+		        "action":'Add'
 	            }
 		    self.render_response('album_info.html', **template_messages)
-
+		    
+		    html_string = ""
+		    cursor.execute('SELECT posted_by,comment,last_edit,rating FROM comments WHERE parent_album_id = %s' % album_id)
+		    for rows in cursor:
+		        comment_posted_by = rows[0]
+		        comment_text = rows[1]
+		        comment_last_edit = rows[2]
+		        comment_rating = rows[3]
+		        comment_html = """<div><p><font size="5">%s:</font> %s<p></div>""" % (comment_posted_by, comment_text)
+		        
+		        html_string = html_string + comment_html
+		        
+	            self.response.write(html_string)
+	            self.response.write('</div></body></html>')
+	            
 	else:
 	    self.redirect('/communities')
 
@@ -62,6 +79,7 @@ class ViewAlbum(BaseHandler):
 		    self.redirect('/communities')
 		else:
 		    self.response.write('Post request processed')
+		    
 
 	else:
 	    self.redirect('/communities')
