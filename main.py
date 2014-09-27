@@ -8,6 +8,7 @@ from manage_users import *
 from add_album import *
 from album_view import *
 from add_comment import *
+from edit_user import *
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -18,7 +19,8 @@ application = webapp2.WSGIApplication([
     ('/manage/(.+)', ManageUsers),
     ('/addalbum/(.+)', AddAlbum),
     ('/albums/(.+)', ViewAlbum),
-    ('/addcomment/(.+)', AddComment)
+    ('/addcomment/(.+)', AddComment),
+    ('/edituser/?', EditUser)
     # debug
     # ('/up/?', TestUp)
 ], debug=True)

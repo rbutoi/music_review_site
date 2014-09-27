@@ -3,7 +3,7 @@
   View invites
 {% endblock %}
 {% block content %}
-{{ message }}
+{{ message }} <a href="/communities">Return to communitites list</a>
 {% for invite in invites %}
 <br /><div><form action="" method="post">{{invite}} <input type="hidden" name="community" value="{{invite}}"><input type="submit" value="Join"></form></div>
 {% endfor %}

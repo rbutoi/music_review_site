@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+  Manage Account
+{% endblock %}
+{% block content %}
+{{message}}
+<form action="" method="post">
+<input type="text" name="new_nickname" value="{{current_nickname}}">
+<input type="submit" value="Change Nickname">
+</form>
+<a href="/communities">Return to communities</a>
+{% endblock %}
