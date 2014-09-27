@@ -23,7 +23,22 @@ class ViewAlbum(BaseHandler):
 		if (cursor.rowcount == 0):
 		    self.redirect('/communities')
 		else:
-		    self.response.write('Page coming soon')
+		    cursor.execute('SELECT album_name, album_artist, album_genre, album_year, posted_by FROM albums WHERE id = %s' % album_id)
+		    for rows in cursor:
+		        album_name = rows[0]
+		        album_artist = rows[1]
+		        album_genre = rows[2]
+		        album_year = rows[3]
+		        album_posted_by = rows[4]
+		    
+		    template_messages={
+		        "album_name":album_name,
+		        "album_artist":album_artist,
+		        "album_genre":album_genre,
+		        "album_year":album_year,
+		        "album_posted_by":album_posted_by
+	            }
+		    self.render_response('album_info.html', **template_messages)
 
 	else:
 	    self.redirect('/communities')
